@@ -50,6 +50,7 @@ function App() {
       if (inputFunc.trim().length > 0) analyzeFunction(inputFunc);
     }, 800);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputFunc]);
 
   // Helper: Determinant of a square matrix (array of arrays)
@@ -115,7 +116,7 @@ function App() {
         try {
           // evaluate symbolic fractions/expressions to float
           return Number(nerdamer(val).evaluate().text());
-        } catch (e) { return 0; }
+        } catch { return 0; }
       };
 
       const processedPoints = solutions.map(sol => {
