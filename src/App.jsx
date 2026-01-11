@@ -315,7 +315,7 @@ function App() {
         >
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
-        <h1>CalcHelper Pro</h1>
+        <h1>CalcPro</h1>
         <div className="subtitle">Extrema Analysis for Multivariable Calculus (N-Vars)</div>
       </header>
 
