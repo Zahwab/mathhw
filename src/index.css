@@ -123,6 +123,7 @@ h1 {
 @media (max-width: 1024px) {
   .main-content {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
@@ -132,21 +133,60 @@ h1 {
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .step-card {
-    padding: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .plot-wrapper {
+    height: 500px;
+  }
+
+  .sidebar {
+    position: static;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .step-card {
+    padding: 1rem;
   }
 
   .plot-wrapper {
     height: 400px;
-    /* Smaller plot on mobile */
+    /* Better for mobile portrait */
   }
 
   .math-display {
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .eq-grid {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    /* Stack on very small screens */
+  }
+
+  .point-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .classification-box {
+    text-align: left;
   }
 }
 
@@ -368,6 +408,18 @@ select option {
   margin-bottom: 0;
 }
 
+
 .info-box li {
   margin-bottom: 0.25rem;
+}
+
+.plot-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  background: var(--glass-bg);
 }

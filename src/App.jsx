@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
+// Plotly is heavy, so we lazy load it
+const Plot = React.lazy(() => import('react-plotly.js'));
 import nerdamer from 'nerdamer';
 import 'nerdamer/all.min';
 import 'katex/dist/katex.min.css';
@@ -429,28 +430,30 @@ function App() {
                   <h3><span className="step-number">4</span> Visualization</h3>
                   <div className="plot-wrapper">
                     {plotData && (
-                      <Plot
-                        data={plotData}
-                        layout={{
-                          width: undefined,
-                          height: 600,
-                          autosize: true,
-                          title: { text: `Surface: ${inputFunc}`, font: { color: theme === 'dark' ? '#f1f5f9' : '#0f172a', size: 18 } },
-                          scene: {
-                            xaxis: { title: vars[0], color: theme === 'dark' ? '#94a3b8' : '#64748b' },
-                            yaxis: { title: vars[1], color: theme === 'dark' ? '#94a3b8' : '#64748b' },
-                            zaxis: { title: `f`, color: theme === 'dark' ? '#94a3b8' : '#64748b' },
-                            aspectratio: { x: 1, y: 1, z: 0.7 }
-                          },
-                          paper_bgcolor: 'rgba(0,0,0,0)',
-                          plot_bgcolor: 'rgba(0,0,0,0)',
-                          margin: { t: 50, b: 20, l: 0, r: 0 },
-                          font: { color: theme === 'dark' ? '#f1f5f9' : '#0f172a' },
-                        }}
-                        useResizeHandler={true}
-                        style={{ width: '100%', height: '100%' }}
-                        config={{ displayModeBar: true, displaylogo: false, responsive: true }}
-                      />
+                      <React.Suspense fallback={<div className="plot-loading">Loading 3D Engine...</div>}>
+                        <Plot
+                          data={plotData}
+                          layout={{
+                            width: undefined,
+                            height: 600,
+                            autosize: true,
+                            title: { text: `Surface: ${inputFunc}`, font: { color: theme === 'dark' ? '#f1f5f9' : '#0f172a', size: 18 } },
+                            scene: {
+                              xaxis: { title: vars[0], color: theme === 'dark' ? '#94a3b8' : '#64748b' },
+                              yaxis: { title: vars[1], color: theme === 'dark' ? '#94a3b8' : '#64748b' },
+                              zaxis: { title: `f`, color: theme === 'dark' ? '#94a3b8' : '#64748b' },
+                              aspectratio: { x: 1, y: 1, z: 0.7 }
+                            },
+                            paper_bgcolor: 'rgba(0,0,0,0)',
+                            plot_bgcolor: 'rgba(0,0,0,0)',
+                            margin: { t: 50, b: 20, l: 0, r: 0 },
+                            font: { color: theme === 'dark' ? '#f1f5f9' : '#0f172a' },
+                          }}
+                          useResizeHandler={true}
+                          style={{ width: '100%', height: '100%' }}
+                          config={{ displayModeBar: true, displaylogo: false, responsive: true }}
+                        />
+                      </React.Suspense>
                     )}
                   </div>
                 </div>
